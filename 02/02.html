@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>지구촌 지리 사전</title>
+    <style>
+        :root {
+            --primary-blue: #2c3e50;
+            --accent-green: #27ae60;
+            --ocean-blue: #3498db;
+            --bg-light: #f4f7f6;
+        }
+
+        body {
+            font-family: 'Pretendard', sans-serif;
+            background-color: var(--bg-light);
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 0;
+            background: linear-gradient(135deg, var(--primary-blue), var(--ocean-blue));
+            color: white;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+
+        h1 { margin: 0; font-size: 2.5rem; }
+        p.subtitle { opacity: 0.9; margin-top: 10px; }
+
+        .section-title {
+            border-left: 5px solid var(--accent-green);
+            padding-left: 15px;
+            margin: 40px 0 20px;
+            color: var(--primary-blue);
+        }
+
+        /* 그리드 시스템 */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 20px;
+        }
+
+        /* 카드 스타일 */
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #eee;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+        }
+
+        .card h3 {
+            margin-top: 0;
+            color: var(--ocean-blue);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .content {
+            display: none;
+            font-size: 0.95rem;
+            color: #555;
+            margin-top: 10px;
+            border-top: 1px dashed #ddd;
+            padding-top: 10px;
+        }
+
+        .card.active {
+            border-color: var(--accent-green);
+        }
+
+        .card.active .content {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .tag {
+            display: inline-block;
+            background: #eee;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>🌍 지구촌 지리 사전</h1>
+        <p class="subtitle">카드를 클릭하여 상세한 지리 정보를 확인해보세요!</p>
+    </header>
+
+    <h2 class="section-title">📍 기본 지리 용어</h2>
+    <div class="grid" id="basic-terms">
+        <!-- JS로 삽입됨 -->
+    </div>
+
+    <h2 class="section-title">🗺️ 세계의 7대륙</h2>
+    <div class="grid" id="continents">
+        <!-- JS로 삽입됨 -->
+    </div>
+
+    <h2 class="section-title">🌊 세계의 5대양</h2>
+    <div class="grid" id="oceans">
+        <!-- JS로 삽입됨 -->
+    </div>
+</div>
+
+<script>
+    const data = {
+        basic: [
+            { title: "대륙", desc: "지구의 표면 중 바다로 둘러싸인 커다란 육지를 의미합니다. 주로 대양을 기준으로 구분하지만, 우랄산맥과 같은 높은 산맥을 경계로 나누기도 합니다.", emoji: "⛰️" },
+            { title: "대양", desc: "세계의 바다 중 넓은 바다를 뜻합니다. 태평양, 대서양, 인도양, 북극해, 남극해가 포함됩니다.", emoji: "🌊" },
+            { title: "위선과 경선", desc: "지구본이나 세계지도에서 특정 위치를 표현할 때 사용합니다. 이 두 선이 만나는 좌표를 통해 위치를 나타냅니다.", emoji: "🌐" },
+            { title: "적도", desc: "위도 0°를 의미하며, 이를 기준으로 북쪽(북반구)과 남쪽(남반구)으로 위치를 구분합니다.", emoji: "🔴" }
+        ],
+        continents: [
+            { title: "아시아", desc: "세계에서 가장 넓은 대륙이며, 대부분 북반구에 분포해 있습니다.", tag: "가장 큰 면적" },
+            { title: "아프리카", desc: "유럽의 남쪽에 위치하며, 세계에서 가장 많은 나라가 있는 대륙입니다.", tag: "다수 국가" },
+            { title: "북아메리카", desc: "세 번째로 큰 대륙이며, 세계에서 가장 큰 섬인 그린란드를 포함합니다.", tag: "그린란드" },
+            { title: "남아메리카", desc: "대부분 남반구에 속하며, 세계에서 가장 긴 안데스 산맥이 있습니다.", tag: "안데스 산맥" },
+            { title: "유럽", desc: "우랄산맥 서쪽에 위치하며, 면적은 작지만 많은 나라가 밀집해 있습니다.", tag: "우랄산맥 경계" },
+            { title: "오세아니아", desc: "세계에서 가장 작은 대륙으로, 대부분 남반구에 위치합니다.", tag: "최소 대륙" },
+            { title: "남극 대륙", desc: "지구의 최남단에 위치한 거대한 얼음 대륙입니다.", tag: "빙하" }
+        ],
+        oceans: [
+            { title: "태평양", desc: "세계에서 가장 크고 깊은 바다입니다.", emoji: "🔵" },
+            { title: "대서양", desc: "유럽, 아프리카와 아메리카 대륙 사이에 있는 바다입니다.", emoji: "🔵" },
+            { title: "인도양", desc: "아프리카, 아시아, 오세아니아 사이에 위치한 바다입니다.", emoji: "🔵" },
+            { title: "북극해", desc: "북극점을 중심으로 북극 지역에 있는 바다입니다.", emoji: "❄️" },
+            { title: "남극해", desc: "남극 대륙을 둘러싸고 있는 바다입니다.", emoji: "❄️" }
+        ]
+    };
+
+    function createCards(sectionId, items) {
+        const container = document.getElementById(sectionId);
+        items.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.innerHTML = `
+                ${item.tag ? `<span class="tag">${item.tag}</span>` : ''}
+                <h3>${item.emoji || '📍'} ${item.title}</h3>
+                <div class="content">${item.desc}</div>
+            `;
+            card.onclick = () => card.classList.toggle('active');
+            container.appendChild(card);
+        });
+    }
+
+    // 초기화
+    createCards('basic-terms', data.basic);
+    createCards('continents', data.continents);
+    createCards('oceans', data.oceans);
+</script>
+
+</body>
+</html>
