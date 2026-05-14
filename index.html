@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>세계 탐험 가이드 - 오대양 육대주</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body { font-family: 'Noto Sans KR', 'Inter', sans-serif; background-color: #f0f9ff; }
+        .continent-card:hover { transform: translateY(-5px); transition: all 0.3s ease; }
+        .shape-card { cursor: pointer; transition: transform 0.2s; }
+        .shape-card:hover { transform: scale(1.05); }
+        .fade-in { animation: fadeIn 0.5s ease-in; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    </style>
+</head>
+<body class="text-slate-800">
+
+    <!-- 네비게이션 및 히어로 섹션 -->
+    <header class="bg-blue-600 text-white pt-6 pb-12 px-4 text-center shadow-lg relative">
+        <div class="max-w-5xl mx-auto text-left mb-6 px-4">
+            <a href="../index.html" class="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 px-4 py-2 rounded-full text-sm font-medium transition-all border border-white/20 backdrop-blur-sm group">
+                <i data-lucide="home" class="w-4 h-4 group-hover:-translate-y-0.5 transition-transform"></i>
+                <span>홈으로</span>
+            </a>
+        </div>
+
+        <div class="max-w-4xl mx-auto">
+            <div class="flex justify-center mb-4">
+                <i data-lucide="globe" class="w-16 h-16 animate-pulse"></i>
+            </div>
+            <h1 class="text-3xl md:text-4xl font-bold mb-4">오대양 육대주 완벽 정복</h1>
+            <p class="text-blue-100 text-lg mb-8">우리 세계를 탐험하기 위한 첫걸음, 대륙과 대양의 밑그림을 그려봅시다!</p>
+            
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="./01/index.html" class="inline-block bg-white text-blue-600 px-8 py-3 rounded-full font-bold shadow-md hover:bg-blue-50 transition-all transform hover:scale-105">
+                    <i data-lucide="map-pin" class="inline-block w-5 h-5 mr-1 align-text-bottom"></i>
+                    7대륙과 5대양
+                </a>
+                <a href="./02/02.html" class="inline-block bg-blue-500 text-white border-2 border-white/30 px-8 py-3 rounded-full font-bold shadow-md hover:bg-blue-400 transition-all transform hover:scale-105">
+                    <i data-lucide="book-open" class="inline-block w-5 h-5 mr-1 align-text-bottom"></i>
+                    세계용어
+                </a>
+                <!-- 신규 추가 버튼들 -->
+                <button onclick="openMediaModal('image', 'unnamed.png')" class="inline-block bg-indigo-500 text-white border-2 border-white/30 px-8 py-3 rounded-full font-bold shadow-md hover:bg-indigo-400 transition-all transform hover:scale-105">
+                    <i data-lucide="image" class="inline-block w-5 h-5 mr-1 align-text-bottom"></i>
+                    인포그래픽보기
+                </button>
+                <button onclick="openMediaModal('video', 'world.mp4')" class="inline-block bg-red-500 text-white border-2 border-white/30 px-8 py-3 rounded-full font-bold shadow-md hover:bg-red-400 transition-all transform hover:scale-105">
+                    <i data-lucide="play-circle" class="inline-block w-5 h-5 mr-1 align-text-bottom"></i>
+                    동영상보기
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- 미디어 팝업 모달 구조 -->
+    <div id="mediaModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+        <div class="relative max-w-4xl w-full bg-white rounded-2xl overflow-hidden shadow-2xl">
+            <button onclick="closeMediaModal()" class="absolute top-4 right-4 z-10 bg-black/50 text-white p-2 rounded-full hover:bg-black transition-colors">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+            <div id="modalContent" class="w-full flex items-center justify-center bg-slate-100 min-h-[300px]">
+                <!-- 내용이 동적으로 삽입됩니다 -->
+            </div>
+        </div>
+    </div>
+
+    <main class="max-w-5xl mx-auto p-6 md:p-10">
+        
+        <!-- 1. 도입부 -->
+        <section class="bg-white p-8 rounded-2xl shadow-sm mb-12">
+            <h2 class="text-2xl font-bold mb-4 flex items-center gap-2">
+                <i data-lucide="compass" class="text-blue-500"></i> 1. 탐험의 시작
+            </h2>
+            <p class="leading-relaxed text-slate-600">
+                지구본의 '위선'과 '경선'이 주소라면, <span class="font-bold text-blue-600">대륙과 대양</span>은 지구라는 큰 지도의 가장 굵직한 밑그림입니다. 7개의 대륙과 5개의 대양을 통해 우리가 사는 세상을 더 깊이 이해해 볼까요?
+            </p>
+        </section>
+
+        <!-- 2. 영토 모양 섹션 -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
+                <i data-lucide="map" class="text-green-500"></i> 2. 한눈에 보는 세계: 독특한 모양
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div class="shape-card bg-white p-4 rounded-xl shadow-sm border-t-4 border-orange-400">
+                    <span class="text-4xl mb-2 block">👢</span>
+                    <h3 class="font-bold text-lg mb-1">이탈리아</h3>
+                    <p class="text-sm text-slate-500">장화 모양</p>
+                </div>
+                <div class="shape-card bg-white p-4 rounded-xl shadow-sm border-t-4 border-blue-400">
+                    <span class="text-4xl mb-2 block">🌶️</span>
+                    <h3 class="font-bold text-lg mb-1">칠레</h3>
+                    <p class="text-sm text-slate-500">길쭉한 고추 모양</p>
+                </div>
+                <div class="shape-card bg-white p-4 rounded-xl shadow-sm border-t-4 border-yellow-400">
+                    <span class="text-4xl mb-2 block">🪃</span>
+                    <h3 class="font-bold text-lg mb-1">소말리아</h3>
+                    <p class="text-sm text-slate-500">부메랑 모양</p>
+                </div>
+                <div class="shape-card bg-white p-4 rounded-xl shadow-sm border-t-4 border-red-400">
+                    <span class="text-4xl mb-2 block">🐯</span>
+                    <h3 class="font-bold text-lg mb-1">대한민국</h3>
+                    <p class="text-sm text-slate-500">포효하는 호랑이</p>
+                </div>
+            </div>
+            <div class="mt-4 bg-orange-50 p-4 rounded-lg border border-orange-100 flex items-start gap-3">
+                <i data-lucide="lightbulb" class="text-orange-500 shrink-0 mt-1"></i>
+                <p class="text-sm text-orange-800 italic">"이 나라는 장갑을 닮았네?" 라고 이름을 붙여보세요. 지도가 훨씬 친숙해질 거예요!</p>
+            </div>
+        </section>
+
+        <!-- 3. 정의 섹션 -->
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+            <div class="bg-indigo-600 text-white p-6 rounded-2xl">
+                <h3 class="text-xl font-bold mb-2 flex items-center gap-2">
+                    <i data-lucide="land-plot"></i> 대륙 (Continent)
+                </h3>
+                <p class="opacity-90">바다로 둘러싸인 거대한 육지. 문화와 역사의 기준이 되기도 합니다.</p>
+                <div class="mt-4 flex flex-wrap gap-2">
+                    <span class="bg-indigo-500 px-2 py-1 rounded text-xs">7대 대륙</span>
+                    <p class="text-xs">아시아, 유럽, 아프리카, 북아메리카, 남아메리카, 오세아니아, 남극</p>
+                </div>
+            </div>
+            <div class="bg-cyan-600 text-white p-6 rounded-2xl">
+                <h3 class="text-xl font-bold mb-2 flex items-center gap-2">
+                    <i data-lucide="waves"></i> 대양 (Ocean)
+                </h3>
+                <p class="opacity-90">세계의 바다 중 특히 넓은 바다를 의미합니다.</p>
+                <div class="mt-4 flex flex-wrap gap-2">
+                    <span class="bg-cyan-500 px-2 py-1 rounded text-xs">5대 대양</span>
+                    <p class="text-xs">태평양, 대서양, 인도양, 북극해, 남극해</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4-6. 인터랙티브 대륙 탐사 -->
+        <section class="bg-white p-8 rounded-2xl shadow-sm mb-12 overflow-hidden">
+            <h2 class="text-2xl font-bold mb-6 text-center">🗺️ 인터랙티브 대륙 탐사기</h2>
+            
+            <div class="flex flex-wrap justify-center gap-2 mb-8">
+                <button onclick="showContinent('asia')" class="continent-btn px-4 py-2 bg-blue-100 rounded-full hover:bg-blue-500 hover:text-white transition-colors" id="btn-asia">아시아</button>
+                <button onclick="showContinent('oceania')" class="continent-btn px-4 py-2 bg-blue-100 rounded-full hover:bg-blue-500 hover:text-white transition-colors">오세아니아</button>
+                <button onclick="showContinent('europe')" class="continent-btn px-4 py-2 bg-blue-100 rounded-full hover:bg-blue-500 hover:text-white transition-colors">유럽</button>
+                <button onclick="showContinent('africa')" class="continent-btn px-4 py-2 bg-blue-100 rounded-full hover:bg-blue-500 hover:text-white transition-colors">아프리카</button>
+                <button onclick="showContinent('namerica')" class="continent-btn px-4 py-2 bg-blue-100 rounded-full hover:bg-blue-500 hover:text-white transition-colors">북아메리카</button>
+                <button onclick="showContinent('samerica')" class="continent-btn px-4 py-2 bg-blue-100 rounded-full hover:bg-blue-500 hover:text-white transition-colors">남아메리카</button>
+            </div>
+
+            <div id="continent-content" class="fade-in bg-slate-50 p-6 rounded-xl border border-slate-200">
+                <!-- 여기에 JS로 내용이 삽입됩니다 -->
+                <p class="text-center text-slate-500">탐험하고 싶은 대륙의 버튼을 클릭해 보세요!</p>
+            </div>
+        </section>
+
+        <!-- 7. 스스로 퀴즈 -->
+        <section class="bg-gradient-to-br from-purple-600 to-indigo-700 p-8 rounded-2xl text-white shadow-xl">
+            <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
+                <i data-lucide="help-circle"></i> 7. 마무리: 나만의 세계지도 완성하기
+            </h2>
+            <div class="bg-white/10 p-6 rounded-xl backdrop-blur-sm border border-white/20">
+                <h3 class="text-lg font-bold mb-4">🎯 오늘의 도전 퀴즈!</h3>
+                <div id="quiz-area">
+                    <p class="mb-4" id="quiz-clue">
+                        <strong>1단계:</strong> 아프리카 동부, 적도가 지남<br>
+                        <strong>2단계:</strong> 영토 모양이 부메랑 모양인 나라 옆에 위치<br>
+                        <strong>3단계:</strong> 동쪽에 소말리아가 있음
+                    </p>
+                    <div class="flex gap-2">
+                        <input type="text" id="quiz-input" placeholder="정답을 입력하세요" class="flex-1 px-4 py-2 rounded-lg text-slate-800">
+                        <button onclick="checkQuiz()" class="bg-yellow-400 text-slate-900 px-6 py-2 rounded-lg font-bold hover:bg-yellow-300">정답확인</button>
+                    </div>
+                    <p id="quiz-feedback" class="mt-4 font-bold"></p>
+                </div>
+            </div>
+            
+            <div class="mt-8 text-center text-indigo-100 italic">
+                학습 지도는 단순히 외우는 것이 아니라, 세상을 이해하는 마음의 지도입니다.<br>
+                여러분의 호기심 가득한 탐험을 응원합니다! 🌍✨
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-800 text-slate-400 py-8 px-4 text-center">
+        <p>© 2024 대륙과 대양 학습 가이드 | 지리학 탐험가 프로그램</p>
+    </footer>
+
+    <script>
+        
+        // 미디어 모달 열기 함수
+        function openMediaModal(type, src) {
+            const modal = document.getElementById('mediaModal');
+            const content = document.getElementById('modalContent');
+            
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // 스크롤 방지
+
+            if (type === 'image') {
+                content.innerHTML = `<img src="${src}" alt="인포그래픽" class="max-w-full max-h-[80vh] object-contain" onerror="this.src='https://placehold.co/800x600/e2e8f0/475569?text=이미지를+찾을+수+없습니다'">`;
+            } else if (type === 'video') {
+                content.innerHTML = `
+                    <video controls autoplay class="w-full max-h-[80vh]">
+                        <source src="${src}" type="video/mp4">
+                        브라우저가 비디오 태그를 지원하지 않습니다.
+                    </video>`;
+            }
+            lucide.createIcons();
+        }
+
+        // 미디어 모달 닫기 함수
+        function closeMediaModal() {
+            const modal = document.getElementById('mediaModal');
+            const content = document.getElementById('modalContent');
+            
+            modal.classList.add('hidden');
+            content.innerHTML = ''; // 미디어 중지 (특히 비디오 소리)
+            document.body.style.overflow = 'auto';
+        }
+
+        // 기존 대륙 데이터 및 함수 유지
+        const continentData = {
+            asia: {
+                title: "🌏 아시아 (Asia)",
+                desc: "세계에서 가장 넓은 대륙으로, 우리나라를 포함한 많은 국가가 이웃하고 있습니다.",
+                size: "세계 1위 (가장 넓음)",
+                pos: "대부분 북반구",
+                countries: "한국, 중국, 일본, 러시아 등",
+                color: "text-blue-600"
+            },
+            oceania: {
+                title: "🏝️ 오세아니아 (Oceania)",
+                desc: "세계에서 가장 작은 대륙이며 수많은 아름다운 섬들로 이루어져 있습니다.",
+                size: "세계 7위 (가장 작음)",
+                pos: "대부분 남반구",
+                countries: "오스트레일리아, 뉴질랜드, 니우에 등",
+                color: "text-emerald-600"
+            },
+            europe: {
+                title: "🏰 유럽 (Europe)",
+                desc: "아시아의 서쪽에 위치하며, 역사와 문화가 깊은 아주 많은 나라가 밀집해 있습니다.",
+                size: "상대적으로 작음",
+                pos: "북반구",
+                countries: "영국, 프랑스, 독일, 이탈리아, 바티칸 등",
+                color: "text-indigo-600"
+            },
+            africa: {
+                title: "🐘 아프리카 (Africa)",
+                desc: "아시아 다음으로 두 번째로 넓은 대륙이며, 가장 많은 나라가 모여 있습니다.",
+                size: "세계 2위",
+                pos: "적도가 가로지름",
+                countries: "케냐, 소말리아, 레소토, 이집트 등",
+                color: "text-orange-600"
+            },
+            namerica: {
+                title: "🏔️ 북아메리카 (North America)",
+                desc: "거대한 본토와 알래스카, 그리고 세계 최대의 섬 그린란드를 포함합니다.",
+                size: "세계 3위",
+                pos: "북반구",
+                countries: "미국, 캐나다, 멕시코 등",
+                color: "text-red-600"
+            },
+            samerica: {
+                title: "🐆 남아메리카 (South America)",
+                desc: "안데스 산맥이 길게 뻗어 있으며, 대부분 남반구에 위치한 대자연의 땅입니다.",
+                size: "세계 4위",
+                pos: "주로 남반구",
+                countries: "브라질, 칠레, 에콰도르, 볼리비아 등",
+                color: "text-teal-600"
+            }
+        };
+
+        // 대륙 정보 표시 함수
+        function showContinent(id) {
+            const data = continentData[id];
+            const content = document.getElementById('continent-content');
+            
+            content.classList.remove('fade-in');
+            void content.offsetWidth; // 리플로우 트리거
+            content.classList.add('fade-in');
+
+            content.innerHTML = `
+                <h3 class="text-2xl font-bold ${data.color} mb-3">${data.title}</h3>
+                <p class="mb-4 text-slate-700">${data.desc}</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="bg-white p-3 rounded-lg shadow-sm">
+                        <span class="text-xs text-slate-400 block uppercase">면적 특징</span>
+                        <span class="font-semibold text-slate-800">${data.size}</span>
+                    </div>
+                    <div class="bg-white p-3 rounded-lg shadow-sm">
+                        <span class="text-xs text-slate-400 block uppercase">주요 위치</span>
+                        <span class="font-semibold text-slate-800">${data.pos}</span>
+                    </div>
+                    <div class="bg-white p-3 rounded-lg shadow-sm">
+                        <span class="text-xs text-slate-400 block uppercase">대표 국가</span>
+                        <span class="font-semibold text-slate-800">${data.countries}</span>
+                    </div>
+                </div>
+            `;
+        }
+
+        // 퀴즈 확인 함수
+        function checkQuiz() {
+            const answer = document.getElementById('quiz-input').value.trim();
+            const feedback = document.getElementById('quiz-feedback');
+            
+            if (answer === '케냐') {
+                feedback.innerHTML = "🎉 정답입니다! 아프리카 동부의 케냐를 정확히 찾으셨군요!";
+                feedback.className = "mt-4 font-bold text-yellow-300 animate-bounce";
+            } else if (answer === '') {
+                feedback.innerHTML = "정답을 입력해 주세요!";
+                feedback.className = "mt-4 font-bold text-red-200";
+            } else {
+                feedback.innerHTML = "다시 한번 생각해 보세요! 힌트: 아프리카 동부에 있고 적도가 지나요.";
+                feedback.className = "mt-4 font-bold text-red-200";
+            }
+        }
+
+        // 아이콘 초기화
+        window.onload = function() {
+            lucide.createIcons();
+            // 초기 화면 설정
+            showContinent('asia');
+        }
+    </script>
+</body>
+</html>
